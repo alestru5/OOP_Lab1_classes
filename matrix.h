@@ -3,21 +3,26 @@
 #include <iostream>
 
 namespace foo{
+    struct Element{
+        int data;
+        std::pair<int, int> coord;
+    };
     class Matrix{
         private:
             int m;
             int n;
             int count;
-            int *numbers;
-            std::pair <int, int> *coord;
+            Element *numbers;
         public:
             Matrix();
-            Matrix(int m, int n, int count, int *numbers, std::pair <int, int> *coord);
+            Matrix(int m, int n, int count, Element *numbers);
+            Matrix(const Matrix& other);
+            Matrix(Matrix& other, bool (*action)(Matrix &matrix, int x));
+            ~Matrix();
             int getM();
-            int Matrix::getN();
-            int Matrix::getCount();
-            int* Matrix::getNumbers();
-            int* Matrix::getCoord();
+            int getN();
+            int getCount();
+            Element* getNumbers();
             void print();    
     };
 }
